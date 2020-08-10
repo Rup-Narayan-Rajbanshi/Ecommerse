@@ -1,0 +1,60 @@
+{% extends 'dashboard_base.html' %}
+
+{% block content %}
+<div class="card mb-4 " style="margin-top: 65px;margin-left:10px; margin-right: 10px;">
+    <div class="card-header">
+        <i class="fas fa-table mr-1"></i>
+        My Orders
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Product</th>
+						<th>Model</th>
+						<th>Color</th>
+						<th>Quantity</th>
+						<th>Price</th>
+						<th>Customer</th>
+						<th>Address</th>
+						<th>Contact No.</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                	{% for order in orders %}
+                	<tr>
+                        <td>{{order.product}}</a></td>
+						<td>{{order.product.model}}</td>
+						<td>{% for col in order.product.color.all %} {{col}} ,{% endfor %}</td>
+						<td>{{order.quantity}}</td>
+						<td>{{order.total_price}}</td>
+						<td>{{order.name}}</td>
+						<td>{{order.address}}</td>
+						<td>{{order.ph_no}}</td>
+                        <td>{% if order.delivered == False %}
+                            <a id="deliver" class="btn btn-sm btn-success" href="{% url 'product:deliver' order.order_id %} ">Deliver</a>
+                            {% else %}
+                            Delivered
+                            {% endif %}
+                        </td>
+					{% endfor %}
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock content %} 
+
+{% block header_js %}
+ <script type="text/javascript">
+
+     function activeMenu(){
+        a=document.getElementById('order_link')
+        a.className += "active-menu"
+     }
+ </script> 
+{% endblock header_js %}

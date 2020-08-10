@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block content %}
+<table>
+	<th>Categories</th>
+	{% for category in categories %}
+		<td>{{category.category}}</td>
+	{% endfor %}
+</table>
+{% endblock content %}

@@ -1,0 +1,24 @@
+{% extends 'dashboard_base.html' %}
+{% load crispy_forms_tags %}
+{% block content%}
+<div class="form-control" style="margin-top: 60px;">
+	<h2>Add Brand</h2><br>
+	<form method='POST' action='' enctype='multipart/form-data' style="margin: 8px;">{% csrf_token %}
+		<div class="row">
+			<div class="col-md-6">
+			{{form|crispy}}
+			</div>
+		</div>
+		<input type='submit' class='flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer' value='ADD' style="width: 25%;margin-bottom: 10px;" />
+	</form>
+</div>
+
+{% endblock %}
+{% block header_js %}
+ <script type="text/javascript">
+
+     function activeMenu(){
+        document.getElementById('brand_link').style.color='#717fe0';
+     }
+ </script> 
+{% endblock header_js %}

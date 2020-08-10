@@ -1,0 +1,278 @@
+<!--Author: W3layouts
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Dashboard</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->  
+    <link rel="icon" type="image/png" href="{% static 'ecom/images/icons/favicon.png' %}"/>
+<!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'ecom/vendor/bootstrap/css/bootstrap.min.css'%}">
+<!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'ecom/fonts/font-awesome-4.7.0/css/font-awesome.min.css'%}">
+<!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'ecom/fonts/iconic/css/material-design-iconic-font.min.css'%}">
+<!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'ecom/fonts/linearicons-v1.0.0/icon-font.min.css'%}">
+<!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'ecom/vendor/animate/animate.css'%}">
+<!--===============================================================================================-->  
+    <link rel="stylesheet" type="text/css" href="{% static 'ecom/vendor/css-hamburgers/hamburgers.min.css'%}">
+<!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'ecom/vendor/animsition/css/animsition.min.css'%}">
+<!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'ecom/vendor/slick/slick.css'%}">
+
+<!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'ecom/vendor/perfect-scrollbar/perfect-scrollbar.css'%}">
+<!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'ecom/css/util.css'%}">
+    <link rel="stylesheet" type="text/css" href="{% static 'ecom/css/main.css'%}">
+<!--===============================================================================================-->
+{% block js %}
+
+{% endblock js%}
+   
+</head>
+
+<body onload="activeMenu()" class="animsition">
+    
+    <!-- Header -->
+    <header>
+        <!-- Header desktop -->
+        <div class="container-menu-desktop">
+            <!-- Topbar -->
+            <div class="top-bar">
+                <div class="content-topbar flex-sb-m h-full container">
+                    <div class="left-top-bar">
+                        Free shipping for standard order over $100
+                    </div>
+
+                    <div class="right-top-bar flex-w h-full">
+                        <a href="#" class="flex-c-m trans-04 p-lr-25">
+                            Help & FAQs
+                        </a>
+                        {% if request.user.is_authenticated %}
+                            <a href="#" class="flex-c-m trans-04 p-lr-25">
+                                {{user.username}}
+                            </a>
+                        {% else %}
+                            <a href="{% url 'account:register' %}" class="flex-c-m trans-04 p-lr-25">
+                                REGISTER
+                            </a>
+                        {% endif %}
+
+                        <a href="{% url 'account:login' %}" class="flex-c-m trans-04 p-lr-25">
+                            LOG IN
+                        </a>
+
+                        <a href="{% url 'account:logout' %}" class="flex-c-m trans-04 p-lr-25">
+                            LOG OUT
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="wrap-menu-desktop">
+                <nav class="limiter-menu-desktop container">
+                    
+                    <!-- Logo desktop -->       
+                    <a href="{% url 'home' %}" class="logo">
+                        <span class="block1-name ltext-102 trans-04 p-b-8">
+                         RN Store
+                        </span>  
+                    </a>
+
+                    <!-- Menu desktop -->
+                    <div class="menu-desktop">
+                        <ul class="main-menu">
+                            <li id="order_link">
+                                <a href="{% url 'dashboard' %}">Orders</a>
+                            </li>
+
+                            <li id="product_link">
+                                <a href="{% url 'product:my-products'%}">Products</a>
+                            </li>
+
+                            <li id="model_link">
+                                <a href="{% url 'product:model-list'%}">Model</a>
+                            </li>
+
+                            <li id="brand_link">
+                                <a href="{% url 'product:brand-list'%}">Brand</a>
+                            </li>
+                        </ul>
+                    </div>  
+                </nav>
+            </div>  
+        </div>
+
+        <!-- Header Mobile -->
+        <div class="wrap-header-mobile">
+            <!-- Logo moblie -->        
+            <div class="logo-mobile">
+                <a href="{% url 'home' %}" class="logo">
+                    <span class="block1-name ltext-102 trans-04 p-b-8">
+                     RN Store
+                    </span>  
+                </a>   
+            </div>
+
+            <!-- Button show menu -->
+            <div class="btn-show-menu-mobile hamburger hamburger--squeeze">
+                <span class="hamburger-box">
+                    <span class="hamburger-inner"></span>
+                </span>
+            </div>
+        </div>
+
+
+        <!-- Menu Mobile -->
+        <div class="menu-mobile">
+            <ul class="topbar-mobile">
+                <li>
+                    <div class="left-top-bar">
+                        Free shipping for standard order over $100
+                    </div>
+                </li>
+
+                <li>
+                    <div class="right-top-bar flex-w h-full">
+                        {% if request.user.is_authenticated %}
+                            <a href="{% url 'account:detail' request.user.id %}" class="flex-c-m p-lr-10 trans-04">
+                                {{user.username}}
+                            </a>
+                        {% else %}
+                            <a href="{% url 'account:register' %}" class="flex-c-m p-lr-10 trans-04">
+                                REGISTER
+                            </a>
+                        {% endif %}
+                        <a href="{% url 'account:login' %}" class="flex-c-m p-lr-10 trans-04">
+                            LOG IN
+                        </a>
+
+                        <a href="{% url 'account:logout' %}" class="flex-c-m p-lr-10 trans-04">
+                            LOG OUT
+                        </a>
+                    </div>
+                </li>
+            </ul>
+
+            <ul class="main-menu-m">
+                <li>
+                    <a href="{% url 'dashboard'%}">Orders</a>
+                </li>
+
+                <li>
+                    <a href="{% url 'product:my-products'%}">Products</a>
+                </li>
+
+
+                <li>
+                    <a href="{% url 'product:model-list'%}">Model</a>
+                </li>
+
+                <li>
+                    <a href="{% url 'product:brand-list'%}">Brand</a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Modal Search -->
+        <div class="modal-search-header flex-c-m trans-04 js-hide-modal-search">
+            <div class="container-search-header">
+                <button class="flex-c-m btn-hide-modal-search trans-04 js-hide-modal-search">
+                    <img src="{% static 'ecom/images/icons/icon-close2.png'%}" alt="CLOSE">
+                </button>
+
+                <form class="wrap-search-header flex-w p-l-15">
+                    <button class="flex-c-m trans-04">
+                        <i class="zmdi zmdi-search"></i>
+                    </button>
+                    <input class="plh3" type="text" name="search" placeholder="Search...">
+                </form>
+            </div>
+        </div>
+    </header>
+
+
+    {% block content %}
+     
+    {% endblock content%}
+    
+    
+    <!-- Footer -->
+    <footer class="bg3 p-t-75 p-b-32">
+        <div class="container">
+            
+            <div class="p-t-40">
+                <div class="flex-c-m flex-w p-b-18">
+                </div>
+
+                <p class="stext-107 cl6 txt-center">
+                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+
+                </p>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- Back to top -->
+    <div class="btn-back-to-top" id="myBtn">
+        <span class="symbol-btn-back-to-top">
+            <i class="zmdi zmdi-chevron-up"></i>
+        </span>
+    </div>
+
+    <!-- Modal1 -->
+    
+<!--===============================================================================================-->  
+    <script src="{% static 'ecom/vendor/jquery/jquery-3.2.1.min.js'%}"></script>
+<!--===============================================================================================-->
+    <script src="{% static 'ecom/vendor/animsition/js/animsition.min.js'%}"></script>
+<!--===============================================================================================-->
+    <script src="{% static 'ecom/vendor/bootstrap/js/popper.js'%}"></script>
+    <script src="{% static 'ecom/vendor/bootstrap/js/bootstrap.min.js'%}"></script>
+<!--===============================================================================================-->
+    <script src="{% static 'ecom/vendor/slick/slick.min.js'%}"></script>
+    <script src="{% static 'ecom/js/slick-custom.js'%}"></script>
+<!--===============================================================================================-->
+    <script src="{% static 'ecom/vendor/isotope/isotope.pkgd.min.js'%}"></script>
+<!--===============================================================================================-->
+    <script src="{% static 'ecom/vendor/sweetalert/sweetalert.min.js'%}"></script>
+ 
+<!--===============================================================================================-->
+    <script src="{% static 'ecom/vendor/perfect-scrollbar/perfect-scrollbar.min.js'%}"></script>
+    <script>
+        $('.js-pscroll').each(function(){
+            $(this).css('position','relative');
+            $(this).css('overflow','hidden');
+            var ps = new PerfectScrollbar(this, {
+                wheelSpeed: 1,
+                scrollingThreshold: 1000,
+                wheelPropagation: false,
+            });
+
+            $(window).on('resize', function(){
+                ps.update();
+            })
+        });
+    </script>
+<!--===============================================================================================-->
+    <script src="{% static 'ecom/js/main.js'%}"></script>
+
+
+    {% block header_js %}
+    {% endblock header_js%}
+
+</body>
+</html>

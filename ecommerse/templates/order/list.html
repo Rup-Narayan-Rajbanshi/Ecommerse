@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+
+
+{% block js %}
+<script type="text/javascript">
+	localStorage.clear();
+</script>
+{% endblock js %}
+
+{% block content %}
+{% if my_orders %}
+<div class="card mb-4 " style="margin-top: 65px;">
+    <div class="card-header">
+        <i class="fas fa-table mr-1"></i>
+        Orders
+    </div>
+    {% if messages %}
+      <div class = "alert alert-danger invalid-feedback d-block text-center mx-3 fade show" role="alert">
+        {% for message in messages %}
+         <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    {% endif %}
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>Order ID</th>
+						<th>Rate</th>
+						<th>Quantity</th>
+						<th>Name</th>
+						<th>Address</th>
+						<th>Phone No</th>
+						<th>Total</th>
+                        <th>Delivered</th>
+                    </tr>
+                </thead>
+                <tbody>
+                	{% for order in my_orders %}
+                	<tr>
+                        <td><a href="{% url 'product:detail' order.product.id %}">{{order.product}}</a></td>
+                        <td>{{order.order_id}}</td>
+						<td>Rs.{{order.product.price}}</td>
+						<td>{{order.quantity}}</td>
+						<td>{{order.name}}</td>
+						<td>{{order.address}}</td>
+						<td>{{order.ph_no}}</td>
+						<td>Rs.{{order.total_price}}</td>
+                        <td>{% if order.delivered == True %} Yes {% else %} No {% endif %}</td>
+					{% endfor %}
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% else %}
+<div style="height:200px;text-align: center;padding-top: 100px;"><h1> Sorry No Orders placed.</h1></div>
+
+{% endif %}
+
+{% endblock content %}
+
+{% block header_js %}
+ <script type="text/javascript">
+
+     function activeMenu(){
+        a=document.getElementById('order_link')
+        a.className += "active-menu"; 
+     }
+ </script> 
+{% endblock header_js %}

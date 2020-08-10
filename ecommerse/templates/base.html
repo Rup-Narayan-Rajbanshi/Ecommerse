@@ -1,0 +1,393 @@
+<!--Author: W3layouts
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Home</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->  
+    <link rel="icon" type="image/png" href="{% static 'ecom/images/icons/favicon.png' %}"/>
+<!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'ecom/vendor/bootstrap/css/bootstrap.min.css'%}">
+<!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'ecom/fonts/font-awesome-4.7.0/css/font-awesome.min.css'%}">
+<!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'ecom/fonts/iconic/css/material-design-iconic-font.min.css'%}">
+<!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'ecom/fonts/linearicons-v1.0.0/icon-font.min.css'%}">
+<!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'ecom/vendor/animate/animate.css'%}">
+<!--===============================================================================================-->  
+    <link rel="stylesheet" type="text/css" href="{% static 'ecom/vendor/css-hamburgers/hamburgers.min.css'%}">
+<!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'ecom/vendor/animsition/css/animsition.min.css'%}">
+    
+<!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'ecom/vendor/slick/slick.css'%}">
+<!--===============================================================================================-->
+{% block css %}
+
+{% endblock css %}
+<!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'ecom/vendor/perfect-scrollbar/perfect-scrollbar.css'%}">
+<!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'ecom/css/util.css'%}">
+    <link rel="stylesheet" type="text/css" href="{% static 'ecom/css/main.css'%}">
+<!--===============================================================================================-->
+
+
+{% block js %}
+
+
+{% endblock js%}
+   
+</head>
+
+<body onload="activeMenu()" class="animsition">
+    
+    <!-- Header -->
+    <header>
+        <!-- Header desktop -->
+        <div class="container-menu-desktop">
+            <!-- Topbar -->
+            <div class="top-bar">
+                <div class="content-topbar flex-sb-m h-full container">
+                    <div class="left-top-bar">
+                        Free shipping for standard order over $100
+                    </div>
+
+                    <div class="right-top-bar flex-w h-full">
+                        {% if request.user.is_authenticated %}
+                            <a href="{% url 'account:detail' request.user.id %}" class="flex-c-m trans-04 p-lr-25">
+                                {{user.username}}
+                            </a>
+                        {% else %}
+                            <a href="{% url 'account:register' %}" class="flex-c-m trans-04 p-lr-25">
+                                REGISTER
+                            </a>
+                        {% endif %}
+
+                        <a href="{% url 'account:login' %}" class="flex-c-m trans-04 p-lr-25">
+                            LOG IN
+                        </a>
+
+                        <a href="{% url 'account:logout' %}" class="flex-c-m trans-04 p-lr-25">
+                            LOG OUT
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="wrap-menu-desktop">
+                <nav class="limiter-menu-desktop container">
+                    
+                    <!-- Logo desktop -->
+                        
+                    <a href="{% url 'home' %}" class="logo">
+                        <span class="block1-name ltext-102 trans-04 p-b-8">
+                         RN Store
+                        </span>  
+                    </a>
+
+                    <!-- Menu desktop -->
+                    <div class="menu-desktop">
+                        <ul class="main-menu">
+                            <li id="home_link">
+                                <a href="{% url 'home' %}">Home</a>
+                            </li>
+
+                            <li id="shop_link">
+                                <a href="{% url 'product:list'%}">Shop</a>
+                            </li>
+
+                            <li id="order_link">
+                                <a href="{% url 'product:order-list' %}">My Orders</a>
+                            </li>
+
+                            <li >
+                                <a href="#">About</a>
+                            </li>
+
+                            <li id="contact_link">
+                                <a href="{% url 'product:contact' %}">Contact</a>
+                            </li>
+                        </ul>
+                    </div>  
+
+                    <!-- Icon header -->
+                    <div class="wrap-icon-header flex-w flex-r-m">
+                        <a href="{% url 'product:checkout' %}">
+                        <div id="cart" class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti" data-notify="0">
+                            <i class="zmdi zmdi-shopping-cart"></i>
+                        </div>    
+                        </a>
+                    </div>
+                </nav>
+            </div>  
+        </div>
+
+        <!-- Header Mobile -->
+        <div class="wrap-header-mobile">
+            <!-- Logo moblie -->
+
+            <div class="logo-mobile">
+                <a href="{% url 'home' %}" class="logo">
+                    <span class="block1-name ltext-102 trans-04 p-b-8">
+                     RN Store
+                    </span>  
+                </a>   
+            </div>
+
+            <!-- Icon header -->
+            <div class="wrap-icon-header flex-w flex-r-m m-r-15">
+               
+
+                <a href="{% url 'product:checkout' %}">
+                    <div id="cart_mobile" class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti js-show-cart" data-notify="0">
+                        
+                        <i class="zmdi zmdi-shopping-cart"></i>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Button show menu -->
+            <div class="btn-show-menu-mobile hamburger hamburger--squeeze">
+                <span class="hamburger-box">
+                    <span class="hamburger-inner"></span>
+                </span>
+            </div>
+        </div>
+
+
+        <!-- Menu Mobile -->
+        <div class="menu-mobile">
+            <ul class="topbar-mobile">
+                <li>
+                    <div class="left-top-bar">
+                        Free shipping for standard order over $100
+                    </div>
+                </li>
+
+                <li>
+                    <div class="right-top-bar flex-w h-full">
+                        {% if request.user.is_authenticated %}
+                            <a href="{% url 'account:detail' request.user.id %}" class="flex-c-m p-lr-10 trans-04">
+                                {{user.username}}
+                            </a>
+                        {% else %}
+                            <a href="{% url 'account:register' %}" class="flex-c-m p-lr-10 trans-04">
+                                REGISTER
+                            </a>
+                        {% endif %}
+                        <a href="{% url 'account:login' %}" class="flex-c-m p-lr-10 trans-04">
+                            LOG IN
+                        </a>
+
+                        <a href="{% url 'account:logout' %}" class="flex-c-m p-lr-10 trans-04">
+                            LOG OUT
+                        </a>
+                    </div>
+                </li>
+            </ul>
+
+            <ul class="main-menu-m">
+                <li>
+                    <a href="{% url 'home'%}">Home</a>
+                </li>
+
+                <li>
+                    <a href="{% url 'product:list'%}">Shop</a>
+                </li>
+
+                <li>
+                    <a href="{% url 'product:order-list' %}">My Orders</a>
+                </li>
+
+                <li>
+                    <a href="#">About</a>
+                </li>
+
+                <li>
+                    <a href="{% url 'product:contact' %}">Contact</a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Modal Search -->
+    </header>
+
+    
+    {% block content %}
+
+    {% endblock content%}
+    
+    
+    <!-- Footer -->
+    <footer class="bg3 p-t-75 p-b-32">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 col-lg-3 p-b-50">
+                    <h4 class="stext-301 cl0 p-b-30">
+                        Links
+                    </h4>
+
+                    <ul>
+                        <li class="p-b-10">
+                            <a href="{% url 'home' %}" class="stext-107 cl7 hov-cl1 trans-04">
+                            Home</a>
+                        </li>
+                        <li class="p-b-10">
+                            <a href="{% url 'product:list'%}" class="stext-107 cl7 hov-cl1 trans-04">
+                            Shop</a>
+                        </li>
+                        <li class="p-b-10">
+                            <a href="{% url 'product:order-list' %}" class="stext-107 cl7 hov-cl1 trans-04">
+                            Orders</a>
+                        </li>
+                        <li class="p-b-10">
+                            <a href="{% url 'product:contact' %}" class="stext-107 cl7 hov-cl1 trans-04">
+                            Contact</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="col-sm-6 col-lg-3 p-b-50">
+                    <h4 class="stext-301 cl0 p-b-30">
+                        Help
+                    </h4>
+
+                    <ul>
+                        <li class="p-b-10">
+                            <a href="#" class="stext-107 cl7 hov-cl1 trans-04">
+                                Track Order
+                            </a>
+                        </li>
+
+                        <li class="p-b-10">
+                            <a href="#" class="stext-107 cl7 hov-cl1 trans-04">
+                                Returns 
+                            </a>
+                        </li>
+
+                        <li class="p-b-10">
+                            <a href="#" class="stext-107 cl7 hov-cl1 trans-04">
+                                Shipping
+                            </a>
+                        </li>
+
+                        <li class="p-b-10">
+                            <a href="#" class="stext-107 cl7 hov-cl1 trans-04">
+                                FAQs
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="col-sm-6 col-lg-3 p-b-50">
+                    <h4 class="stext-301 cl0 p-b-30">
+                        GET IN TOUCH
+                    </h4>
+
+                    <p class="stext-107 cl7 size-201">
+                       Mechinagar-7, Itabhatta, Jhapa, Nepal, +977-98XXXXXXXX , rswarup@gmail.com
+                    </p>
+
+                    <div class="p-t-27">
+                        <a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
+                            <i class="fa fa-facebook"></i>
+                        </a>
+
+                        <a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
+                            <i class="fa fa-instagram"></i>
+                        </a>
+
+                        <a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
+                            <i class="fa fa-pinterest-p"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="col-sm-6 col-lg-3 p-b-50">
+                    <h4 class="stext-301 cl0 p-b-30">
+                        About
+                    </h4>
+                    This is a test ecommerse website.This is a test ecommerse website.This is a test ecommerse website........ 
+                </div>
+            </div>
+
+            <div class="p-t-20">
+                <p class="stext-107 cl6 txt-center">
+                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved <i class="fa fa-heart-o" aria-hidden="true"></i> <a href="https://rnr.pythonanywhere.com" target="_blank">RN Store</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- Back to top -->
+    <div class="btn-back-to-top" id="myBtn">
+        <span class="symbol-btn-back-to-top">
+            <i class="zmdi zmdi-chevron-up"></i>
+        </span>
+    </div>
+
+    <!-- Modal1 -->
+    
+<!--===============================================================================================-->  
+    <script src="{% static 'ecom/vendor/jquery/jquery-3.2.1.min.js'%}"></script>
+<!--===============================================================================================-->
+    <script src="{% static 'ecom/vendor/animsition/js/animsition.min.js'%}"></script>
+<!--===============================================================================================-->
+    <script src="{% static 'ecom/vendor/bootstrap/js/popper.js'%}"></script>
+    <script src="{% static 'ecom/vendor/bootstrap/js/bootstrap.min.js'%}"></script>
+<!--===============================================================================================-->
+    <script src="{% static 'ecom/vendor/slick/slick.min.js'%}"></script>
+    <script src="{% static 'ecom/js/slick-custom.js'%}"></script>
+<!--===============================================================================================-->
+
+<script>
+
+  if(localStorage.getItem('cart') == null){
+    var cart={};
+}
+  else {
+    cart = JSON.parse(localStorage.getItem('cart'));
+    document.getElementById('cart').setAttribute('data-notify',Object.keys(cart).length);
+    document.getElementById('cart_mobile').setAttribute('data-notify',Object.keys(cart).length);
+}
+
+/*---------------------------------------------*/
+
+</script>
+<!--===============================================================================================-->
+    <script src="{% static 'ecom/vendor/perfect-scrollbar/perfect-scrollbar.min.js'%}"></script>
+    <script>
+        $('.js-pscroll').each(function(){
+            $(this).css('position','relative');
+            $(this).css('overflow','hidden');
+            var ps = new PerfectScrollbar(this, {
+                wheelSpeed: 1,
+                scrollingThreshold: 1000,
+                wheelPropagation: false,
+            });
+
+            $(window).on('resize', function(){
+                ps.update();
+            })
+        });
+    </script>
+<!--===============================================================================================-->
+    <script src="{% static 'ecom/js/main.js'%}"></script>
+
+
+    {% block header_js %}
+    {% endblock header_js%}
+
+</body>
+</html>

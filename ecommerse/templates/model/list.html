@@ -1,0 +1,41 @@
+{% extends "dashboard_base.html" %}
+
+{% block content %}
+<div class="card mb-4 " style="margin-top: 65px;margin-left:10px; margin-right: 10px;">
+		    <div class="card-header">
+		        <a class="btn btn-sm btn-success" href="{% url 'product:model-add'%}" style="margin-left: 10px;">Add</a>
+		        <i class="fas fa-table mr-1"></i>
+		        Model
+		    </div>
+		    <div class="card-body">
+		        <div class="table-responsive">
+		            <table class="table table-bordered" width="100%" cellspacing="0">
+		                <thead>
+		                    <tr>
+								<th>Model</th>
+								<th>Action</th>
+		                    </tr>
+		                </thead>
+		                <tbody>
+		                	{% for model in models %}
+		                	<tr>
+								<td>{{model.model}}</td>
+								<td><a href="{% url 'product:model-update' model.id %}">Update</a></td>
+							{% endfor %}
+		                    </tr>
+		                </tbody>
+		            </table>
+		        </div>
+		    </div>
+		</div>
+{% endblock content %}
+
+{% block header_js %}
+ <script type="text/javascript">
+
+     function activeMenu(){
+        a=document.getElementById('model_link')
+        a.className += "active-menu"; 
+     }
+ </script> 
+{% endblock header_js %}

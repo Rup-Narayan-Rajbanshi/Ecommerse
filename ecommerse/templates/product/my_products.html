@@ -1,0 +1,50 @@
+{% extends "dashboard_base.html" %}
+
+{% block content %}
+<div class="card mb-4 " style="margin-top: 65px;margin-left:10px; margin-right: 10px;">
+		    <div class="card-header">
+		        <a class="btn btn-sm btn-success" href="{% url 'product:product-add'%}" style="margin-left: 10px;">Add</a>
+		        <i class="fas fa-table mr-1"></i>
+		        Products
+		    </div>
+		    <div class="card-body">
+		        <div class="table-responsive">
+		            <table class="table table-bordered" width="100%" cellspacing="0">
+		                <thead>
+		                    <tr>
+								<th>Product</th>
+								<th>Brand</th>
+								<th>Model</th>
+								<th>Category</th>
+								<th>Color</th>
+								<th>Price</th>
+								<th>Action</th>
+		                </thead>
+		                <tbody>
+		                	{% for product in products %}
+		                	<tr>
+		                        <td>{{product.product}}</a></td>
+								<td>{{product.brand}}</td>
+								<td>{{product.model}}</td>
+								<td>{{product.category}}</td>
+								<td>{% for col in product.color.all %}{{col}}, {% endfor%}</td>
+								<td>{{product.price}}</td>
+								<td><a href="{% url 'product:update' product.id %}">Update</a></td>
+							{% endfor %}
+		                    </tr>
+		                </tbody>
+		            </table>
+		        </div>
+		    </div>
+		</div>
+{% endblock content %}
+
+{% block header_js %}
+ <script type="text/javascript">
+
+    function activeMenu(){
+        a=document.getElementById('product_link')
+        a.className += "active-menu"; 
+     }
+ </script> 
+{% endblock header_js %}

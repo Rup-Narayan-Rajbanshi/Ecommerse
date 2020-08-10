@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+<table>
+	<thead>
+		<th>Colors</th>
+	</thead>
+	<tbody>
+		{% for color in colors %}
+		<tr>		
+			<td>{{color.color}}</td>
+		</tr>
+		{% endfor %}	
+	</tbody>
+</table>
+{% endblock content %}

@@ -1,0 +1,66 @@
+{% extends 'dashboard_base.html' %}
+{% load crispy_forms_tags %}
+{% block content%}
+<div class="form-control" style="margin-top: 60px;">
+	<h2>Add Product</h2><br>
+		<form method='POST' action='' enctype='multipart/form-data' style="margin: 8px;">{% csrf_token %}
+			<div class="row">
+				<div class="col-md-3">
+				{{ product_form.category|as_crispy_field}}
+				</div>
+				<div class="col-md-3">
+				{{ product_form.brand|as_crispy_field}}
+				</div>
+				<div class="col-md-3">
+				{{ product_form.model|as_crispy_field}}
+				</div>
+				<div class="col-md-3">
+				{{ product_form.gender|as_crispy_field}}
+				</div>
+				<div class="col-md-3">
+				{{ product_form.color|as_crispy_field}}
+				</div>
+				<div class="col-md-3">
+				{{ product_form.product|as_crispy_field}}
+				</div>
+				
+				<div class="col-md-3">
+				{{ product_form.size|as_crispy_field}}
+				</div>
+				<div class="col-md-3">
+				{{ product_form.price|as_crispy_field}}
+				</div>
+				<div class="col-md-6">
+				{{ product_form.description|as_crispy_field}}
+				</div>
+				<div class="col-md-6" style="margin-top: 20px;">
+					{% for img in image_instance %}
+						<img src="{{ img.image.url }}" style="width: 100px;margin:10px;"><a href="{% url 'product:image-update' img.id %}">Change</a>
+					{% endfor %}
+					{{ image_form }}
+				</div>
+				<div class="col-md-3" style="margin-top: 30px;margin-left: 18px;">
+				{{ product_form.new_collection|as_crispy_field}}
+				</div>
+				<div class="col-md-3">
+				{{ product_form.text1|as_crispy_field}}
+				</div>
+				<div class="col-md-3">
+				{{ product_form.text2|as_crispy_field}}
+				</div>
+			</div>
+			<input type='submit' class='flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer' value='ADD' style="width: 25%;margin-bottom: 10px;" />
+		</form>
+	</div>
+
+{% endblock %}
+
+{% block header_js %}
+ <script type="text/javascript">
+
+     function activeMenu(){
+        a=document.getElementById('product_link')
+        a.className += "active-menu"
+     }
+ </script> 
+{% endblock header_js %}

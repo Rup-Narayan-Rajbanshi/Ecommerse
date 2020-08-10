@@ -1,0 +1,325 @@
+{% extends "base.html" %}
+{% load my_templatetags %}
+{% load static %}
+
+{% block css%}
+ <link rel="stylesheet" type="text/css" href="{% static 'ecom/vendor/MagnificPopup/magnific-popup.css'%}">
+{% endblock css%}
+
+
+ 
+{% block content %}
+<!-- breadcrumb -->
+    <div class="container" style="margin-top: 40px;">
+        <div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
+            <a href="{% url 'home'%}" class="stext-109 cl8 hov-cl1 trans-04">
+                Home
+                <i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
+            </a>
+
+            <a href="product.html" class="stext-109 cl8 hov-cl1 trans-04">
+                {{product.category}}
+                <i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
+            </a>
+
+            <span class="stext-109 cl4">
+                {{product.product}}
+            </span>
+        </div>
+    </div>
+        
+
+    <!-- Product Detail -->
+    <section class="sec-product-detail bg0 p-t-65 p-b-60">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-lg-7 p-b-30">
+                    <div class="p-l-25 p-r-30 p-lr-0-lg">
+                        <div class="wrap-slick3 flex-sb flex-w">
+                            <div class="wrap-slick3-dots"></div>
+                            <div class="wrap-slick3-arrows flex-sb-m flex-w"></div>
+
+                            <div class="slick3 gallery-lb">
+                                {% for image in product.image.all %}
+                                    {% if forloop.counter == 1 %}
+                                        <div class="item-slick3" data-thumb="{{image.image.url}}">
+                                            <div class="wrap-pic-w pos-relative">
+                                                <img src="{{image.image.url}}" alt="IMG-PRODUCT">
+
+                                                <a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="{{image.image.url}}">
+                                                    <i class="fa fa-expand"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    {% endif %}
+                                    {% if forloop.counter == 2 %}
+                                    <div class="item-slick3" data-thumb="{{image.image.url}}">
+                                        <div class="wrap-pic-w pos-relative">
+                                            <img src="{{image.image.url}}" alt="IMG-PRODUCT">
+
+                                            <a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="{{image.image.url}}">
+                                                <i class="fa fa-expand"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    {% endif%}
+                                    {% if forloop.counter == 3 %}
+                                    <div class="item-slick3" data-thumb="{{image.image.url}}">
+                                        <div class="wrap-pic-w pos-relative">
+                                            <img src="{{image.image.url}}" alt="IMG-PRODUCT">
+
+                                            <a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="{{image.image.url}}">
+                                                <i class="fa fa-expand"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    {% endif%}
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                    
+                <div class="col-md-6 col-lg-5 p-b-30">
+                    <div class="p-r-50 p-t-5 p-lr-0-lg">
+                        <h4 id="namepr{{product.id}}" class="mtext-105 cl2 js-name-detail p-b-14">{{product.product}}</h4>
+
+                        <span id="pricepr{{product.id}}" class="mtext-106 cl2">Rs.{{product.price}}</span>
+
+                        <p class="stext-102 cl3 p-t-23">
+                            Discription :{{product.description}}
+                        </p>
+                        
+                        <!--  -->
+                        <div class="p-t-33">
+                           
+                            <p class="stext-102 cl3 p-t-23">Brand : {{product.brand}}</p>   
+                            <p class="stext-102 cl3 p-t-23"> Color : {% for color in product.color.all %} {{color}} ,{% endfor%}</p>
+                            <p class="stext-102 cl3 p-t-23">Size :{{product.size}}</p>    
+                            
+                            <div class="flex-w flex-r-m p-b-10">
+                                <div class="size-204 flex-w flex-m respon6-next">
+                                    <div id="plus_minus" style="display: none;" class="wrap-num-product flex-w m-r-20 m-tb-10">
+                                        <div id="minuspr{{product.id}}" class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
+                                            <i class="fs-16 zmdi zmdi-minus"></i>
+                                        </div>
+
+                                        <input id="cart_qtypr{{product.id}}" class="mtext-104 cl3 txt-center num-product" type="number" name="num-product" value="0">
+
+                                        <div id="pluspr{{product.id}}" class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
+                                            <i class="fs-16 zmdi zmdi-plus"></i>
+                                        </div>
+                                    </div>
+
+                                    <button id="pr{{product.id}}" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail cart" value="{{product.product}}">
+                                        Add to cart
+                                    </button>
+                                </div>
+                            </div>  
+                        </div>
+
+                        <!--  -->
+                        <div class="flex-w flex-m p-l-100 p-t-40 respon7">
+                            <div class="flex-m bor9 p-r-10 m-r-11">
+                                <a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 js-addwish-detail tooltip100" data-tooltip="Add to Wishlist">
+                                    <i class="zmdi zmdi-favorite"></i>
+                                </a>
+                            </div>
+
+                            <a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" data-tooltip="Facebook">
+                                <i class="fa fa-facebook"></i>
+                            </a>
+
+                            <a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" data-tooltip="Twitter">
+                                <i class="fa fa-twitter"></i>
+                            </a>
+
+                            <a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" data-tooltip="Google Plus">
+                                <i class="fa fa-google-plus"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bor10 m-t-50 p-t-43 p-b-40">
+                <!-- Tab01 -->
+                <div class="tab01">
+                    <!-- Nav tabs -->
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li class="nav-item p-b-10">
+                            <a class="nav-link active" data-toggle="tab" href="#description" role="tab">Description</a>
+                        </li>
+
+                        <li class="nav-item p-b-10">
+                            <a class="nav-link" data-toggle="tab" href="#information" role="tab">Additional information</a>
+                        </li>
+                    </ul>
+
+                    <!-- Tab panes -->
+                    <div class="tab-content p-t-43">
+                        <!-- - -->
+                        <div class="tab-pane fade show active" id="description" role="tabpanel">
+                            <div class="how-pos2 p-lr-15-md">
+                                <p class="stext-102 cl6">
+                                   {{product.description}}
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- - -->
+                        <div class="tab-pane fade" id="information" role="tabpanel">
+                            <div class="row">
+                                <div class="col-sm-10 col-md-8 col-lg-6 m-lr-auto">
+                                    <ul class="p-lr-28 p-lr-15-sm">
+                                        <li class="flex-w flex-t p-b-7">
+                                            <span class="stext-102 cl3 size-205">
+                                                Model
+                                            </span>
+
+                                            <span class="stext-102 cl6 size-206">
+                                               {{product.model}}
+                                            </span>
+                                        </li>
+
+                                        <li class="flex-w flex-t p-b-7">
+                                            <span class="stext-102 cl3 size-205">
+                                                Brand
+                                            </span>
+
+                                            <span class="stext-102 cl6 size-206">
+                                                {{product.brand}}
+                                            </span>
+                                        </li>
+
+                                        <li class="flex-w flex-t p-b-7">
+                                            <span class="stext-102 cl3 size-205">
+                                                Color:
+                                            </span>
+
+                                            <span class="stext-102 cl6 size-206">
+                                               {% for color in product.color.all %} {{color}} ,{% endfor%}
+                                            </span>
+                                        </li>
+
+                                        <li class="flex-w flex-t p-b-7">
+                                            <span class="stext-102 cl3 size-205">
+                                                Size
+                                            </span>
+
+                                            <span class="stext-102 cl6 size-206">
+                                                XL, L, M, S
+                                            </span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+        
+{% endblock content %}
+
+{% block header_js %}
+<script type="text/javascript">
+    if(localStorage.getItem('cart') == null){
+        var cart={};
+        }
+          else {
+            cart = JSON.parse(localStorage.getItem('cart'));
+            // document.getElementById('cart').setAttribute('data-notify',Object.keys(cart).length);
+
+            a=document.getElementById('cart_qtypr{{product.id}}').id;
+            console.log(a)
+            a=a.slice(8,)
+            
+            if(cart['pr'+a] != undefined ){
+                document.getElementById('cart_qtypr{{product.id}}').setAttribute('value',cart[a][0]);
+                document.getElementById('plus_minus').style=false;
+                $('.cart').hide();
+            }
+
+          }
+    
+    $('.js-addcart-detail').each(function(){
+        var nameProduct = $(this).parent().parent().parent().parent().find('.js-name-detail').html();
+        $(this).on('click', function(){
+            swal(nameProduct, "is added to cart !", "success");
+        });
+    });
+
+    $('.cart').click(function(){
+
+            var idstr=this.id.toString();
+
+            if(cart[idstr] != undefined ){
+                qty=cart[idstr][0]+1;
+
+            }
+            else {
+                qty=1;
+                name=document.getElementById('name'+idstr).innerHTML;
+                price=document.getElementById('price'+idstr).innerHTML;
+                cart[idstr]=[qty, name, price]
+
+            }
+
+            localStorage.setItem('cart',JSON.stringify(cart))
+            document.getElementById('cart').setAttribute('data-notify',Object.keys(cart).length);
+            document.getElementById('cart_mobile').setAttribute('data-notify',Object.keys(cart).length);
+            document.getElementById('cart_qtypr{{product.id}}').setAttribute('value',cart[idstr][0]);
+
+            document.getElementById('plus_minus').style=false;
+            $('.cart').hide();
+        });
+
+    $('.btn-num-product-down').on('click', function(){
+        a= this.id.slice(5,);
+        cart[a][0]=cart[a][0] - 1;
+        cart[a][0]=Math.max(0,cart[a][0])
+        localStorage.setItem('cart',JSON.stringify(cart))
+         // console.log('cart_qty'+a)
+        $("#cart_qty"+a).attr("value",cart[a][0]);
+        
+    });
+
+    $('.btn-num-product-up').on('click', function(){
+        a= this.id.slice(4,);
+        console.log(a)
+        cart[a][0]=cart[a][0] + 1;
+        localStorage.setItem('cart',JSON.stringify(cart))
+        $("#cart_qty"+a).attr("value",cart[a][0]);
+
+    });
+
+
+    function activeMenu(){
+        a=document.getElementById('shop_link')
+        a.className += "active-menu";
+        // console.log(a.innerHTML)
+        // alert(a.class);
+     }
+
+</script>
+
+
+ <script src="{% static 'ecom/vendor/MagnificPopup/jquery.magnific-popup.min.js'%}"></script>
+    <script>
+        $('.gallery-lb').each(function() { // the containers for all your galleries
+            $(this).magnificPopup({
+                delegate: 'a', // the selector for gallery item
+                type: 'image',
+                gallery: {
+                    enabled:true
+                },
+                mainClass: 'mfp-fade'
+            });
+        });
+    </script>
+
+    <script src="{% static 'ecom/vendor/sweetalert/sweetalert.min.js'%}"></script>
+{% endblock header_js%}

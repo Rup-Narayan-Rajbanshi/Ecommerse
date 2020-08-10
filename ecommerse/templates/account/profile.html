@@ -1,0 +1,38 @@
+{% extends 'base.html'%}
+{% block content%}
+<div class="site-section" style="margin-top: 30px;">
+      <div class="container">
+        {% if request.user.is_authenticated %}
+        <div class="row">
+          	<div class="col-md-8 mb-5"> 
+            	<div class="p-5 bg-white">
+             		<div class="mb-4 mb-md-2 mr-5">
+               			<div class="job-post-item-header d-flex align-items-center">
+			                <span class="block1-name ltext-102 trans-04 p-b-8">
+			                    {{ user.first_name }} {{ user.last_name }}
+			                </span>
+			                <p class=""><a href="{% url 'account:update' user.id %}" class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer" style="margin-left:20px;">Update</a>
+							</p>
+              			</div>
+						<h5>Username :</h5><p>{{user.username}}</p><br>
+						<h5>First Name :</h5><p>{{user.first_name}}</p><br>
+						<h5>Last Name :</h5><p>{{user.last_name}}</p><br>
+						<h5>Email :</h5><p>{{user.email}}</p><br>
+						{% if user_detail %}
+						<h5>Address :</h5><p>{{user_detail.address}}</p><br>
+						<h5>Phone No :</h5><p>{{user_detail.phone_no}}</p><br>
+						<h5>Landmark :</h5><p>{{user_detail.landmark}}</p><br>
+						{% endif %}
+						<p class=""><a href="{% url 'account:password-change' %}" class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer">Change Password</a>
+							</p>
+            		</div>
+				</div>
+			</div>
+		{% else %}
+		    <div style="background: #32a852; height: 50px;"><h4>You are not a registered user.Click <a href="{% url 'account:signin'%}" style="color: red;">here</a> to signup.</h4>
+		    </div>
+		{% endif %}
+      	</div>
+    </div>
+</div>
+{% endblock %}
