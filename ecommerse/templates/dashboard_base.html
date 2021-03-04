@@ -35,6 +35,13 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <link rel="stylesheet" type="text/css" href="{% static 'ecom/css/util.css'%}">
     <link rel="stylesheet" type="text/css" href="{% static 'ecom/css/main.css'%}">
 <!--===============================================================================================-->
+
+<style>
+{% block css %}
+
+{% endblock css%}
+</style>
+
 {% block js %}
 
 {% endblock js%}
@@ -98,10 +105,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
                             <li id="product_link">
                                 <a href="{% url 'product:my-products'%}">Products</a>
-                            </li>
-
-                            <li id="model_link">
-                                <a href="{% url 'product:model-list'%}">Model</a>
                             </li>
 
                             <li id="brand_link">
@@ -171,11 +174,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
                 <li>
                     <a href="{% url 'product:my-products'%}">Products</a>
-                </li>
-
-
-                <li>
-                    <a href="{% url 'product:model-list'%}">Model</a>
                 </li>
 
                 <li>

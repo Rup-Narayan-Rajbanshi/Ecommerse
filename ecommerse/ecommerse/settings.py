@@ -21,6 +21,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'j^#rrbst(nbe*^%)oldc5#1@kokzi)1l47_y4k##lltpsqo5y='
+# SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -42,6 +43,7 @@ INSTALLED_APPS = [
 
     'account',
     'product',
+    'order',
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
@@ -86,8 +88,12 @@ WSGI_APPLICATION = 'ecommerse.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.environ.get('DATABASE_NAME'),
+        'USER': os.environ.get('DATABASE_USER'),
+        'PASSWORD': os.environ.get('DATABASE_PASSWORD'),
+        'PORT': os.environ.get('DATABASE_PORT'),
+        'HOST': os.environ.get('DATABASE_HOST'),
     }
 }
 
@@ -122,7 +128,7 @@ USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = True
+USE_TZ = False
 
 
 # Static files (CSS, JavaScript, Images)

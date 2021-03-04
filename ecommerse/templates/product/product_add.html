@@ -1,5 +1,24 @@
 {% extends 'dashboard_base.html' %}
 {% load crispy_forms_tags %}
+
+{% block css %}
+.button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+  }
+
+  .button2 {background-color: #008CBA;} /* Blue */
+  .button3 {background-color: #f44336;} /* Red */ 
+{% endblock css %}
+
 {% block content%}
 <div class="form-control" style="margin-top: 60px;">
 	<h2>Add Product</h2><br>
@@ -12,9 +31,6 @@
 				{{ product_form.brand|as_crispy_field}}
 				</div>
 				<div class="col-md-3">
-				{{ product_form.model|as_crispy_field}}
-				</div>
-				<div class="col-md-3">
 				{{ product_form.gender|as_crispy_field}}
 				</div>
 				<div class="col-md-3">
@@ -23,7 +39,6 @@
 				<div class="col-md-3">
 				{{ product_form.product|as_crispy_field}}
 				</div>
-				
 				<div class="col-md-3">
 				{{ product_form.size|as_crispy_field}}
 				</div>
@@ -35,12 +50,14 @@
 				</div>
 				<div class="col-md-6" style="margin-top: 20px;">
 					{% for img in image_instance %}
-						<img src="{{ img.image.url }}" style="width: 100px;margin:10px;"><a href="{% url 'product:image-update' img.id %}">Change</a>
+                        <img src="{{ img.image.url }}" style="width: 100px;margin:10px;"><br>
+                        <button class="button"><a href="{% url 'product:image-update' img.id %}">Change</a><br></button>
+                        <button class="button button3"><a href="{% url 'product:image-delete' img.id %}">Delete</a></button><br>
 					{% endfor %}
 					{{ image_form }}
 				</div>
 				<div class="col-md-3" style="margin-top: 30px;margin-left: 18px;">
-				{{ product_form.new_collection|as_crispy_field}}
+				{{ product_form.is_new_collection|as_crispy_field}}
 				</div>
 				<div class="col-md-3">
 				{{ product_form.text1|as_crispy_field}}

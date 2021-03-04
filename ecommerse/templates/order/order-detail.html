@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+
+
+{% block js %}
+<script type="text/javascript">
+	localStorage.clear();
+</script>
+{% endblock js %}
+
+{% block content %}
+{% if my_orders_detail %}
+<div class="card mb-4 " style="margin-top: 65px;">
+    <div class="card-header">
+        <i class="fas fa-table mr-1"></i>
+        My Orders
+    </div>
+    {% if messages %}
+      <div class = "alert alert-danger invalid-feedback d-block text-center mx-3 fade show" role="alert">
+        {% for message in messages %}
+         <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    {% endif %}
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>Order ID</th>
+						<th>Rate</th>
+						<th>Quantity</th>
+						<th>Total Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                	{% for order in my_orders_detail %}
+                	<tr>
+                        <td><a href="{% url 'product:detail' order.product.id %}">{{order.product}}</a></td>
+                        <td>{{order.id}}</td>
+						<td>Rs.{{order.product.price}}</td>
+						<td>{{order.quantity}}</td>
+						<td>Rs.{{order.total_price}}</td>
+					{% endfor %}
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% else %}
+<div style="height:200px;text-align: center;padding-top: 100px;"><h1> Sorry No Orders placed.</h1></div>
+
+{% endif %}
+
+{% endblock content %}
+
+{% block header_js %}
+ <script type="text/javascript">
+
+     function activeMenu(){
+        a=document.getElementById('order_link')
+        a.className += "active-menu"; 
+     }
+ </script> 
+{% endblock header_js %}

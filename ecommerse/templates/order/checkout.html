@@ -21,25 +21,16 @@
 							</table> 
 						</div>
 
+                        {{form.errors}}
 						<div class="com-md-10">
 
 							<form id="form" method="POST">{% csrf_token %}
+
+                                {{form.errors}}
 								<div class="form-group" style="display: none;">
 		                            {{form.product_json|as_crispy_field}}
-		                        </div>
-		                        <div class="form-group">
-		                            {{form.name|as_crispy_field}}
-		                        </div>
-                                <div class="form-group">
-                                    {{form.address|as_crispy_field}}
                                 </div>
-                                <div class="form-row">
-		                            <div class="col-md-6">
-		                                <div class="form-group">
-		                                    {{form.ph_no|as_crispy_field}}
-		                                </div>
-		                            </div>
-			                    </div>
+
 			                    {% if not request.user.is_authenticated %}
 			                    	<div class="form-group mt-4 mb-0"><a class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer" onclick="alert('Please Login to place a order')">Place Order</a></div>
 			                    {%else%}

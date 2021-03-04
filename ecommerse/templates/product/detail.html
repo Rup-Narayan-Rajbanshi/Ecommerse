@@ -41,16 +41,18 @@
 
                             <div class="slick3 gallery-lb">
                                 {% for image in product.image.all %}
-                                    {% if forloop.counter == 1 %}
-                                        <div class="item-slick3" data-thumb="{{image.image.url}}">
-                                            <div class="wrap-pic-w pos-relative">
-                                                <img src="{{image.image.url}}" alt="IMG-PRODUCT">
+                                    {% if image.image %}
+                                        {% if forloop.counter == 1 %}
+                                            <div class="item-slick3" data-thumb="{{image.image.url}}">
+                                                <div class="wrap-pic-w pos-relative">
+                                                    <img src="{{image.image.url}}" alt="IMG-PRODUCT">
 
-                                                <a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="{{image.image.url}}">
-                                                    <i class="fa fa-expand"></i>
-                                                </a>
+                                                    <a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="{{image.image.url}}">
+                                                        <i class="fa fa-expand"></i>
+                                                    </a>
+                                                </div>
                                             </div>
-                                        </div>
+                                        {% endif %}
                                     {% endif %}
                                     {% if forloop.counter == 2 %}
                                     <div class="item-slick3" data-thumb="{{image.image.url}}">
