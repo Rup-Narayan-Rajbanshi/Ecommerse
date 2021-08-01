@@ -1,12 +1,13 @@
 from django import forms
-from django.contrib.auth import authenticate, get_user_model
+from django.contrib.auth import authenticate
 from django.contrib.auth.models import Group
-from .models import *
-User = get_user_model()
+from account.models.user import User
+# User = get_user_model()
 
 class UserLoginForm(forms.Form):
-	username = forms.CharField()
+	phone_number = forms.CharField()
 	password = forms.CharField(widget=forms.PasswordInput)
+	# email = forms.EmailField()
 
 	def __init__(self, *args, **kwargs):
 	    super().__init__(*args, **kwargs)
@@ -14,9 +15,11 @@ class UserLoginForm(forms.Form):
 	    	self.fields[field].widget.attrs.update({'class':'input100'})
 	
 	def clean(self, *args, **kwargs):
-		username = self.cleaned_data.get('username')
+		phone_number = self.cleaned_data.get('phone_number')
 		password = self.cleaned_data.get('password')
-		user = authenticate(username=username,password=password)
+		# email = self.cleaned_data.get('email')
+		user = authenticate(phone_number=phone_number,password=password)
+		print("passed form")
 
 		if not user:
 			raise forms.ValidationError('The user doesnot exist')
@@ -28,18 +31,18 @@ class UserLoginForm(forms.Form):
 
 class RegisterForm(forms.ModelForm):
 	confirm_password=forms.CharField(label='Confirm Password')
-	user_category=forms.ModelChoiceField(queryset = Group.objects.all(),
-								        required = False,
-								        label='User Category',
-								        )
+	# user_category=forms.ModelChoiceField(queryset = Group.objects.all(),
+	# 							        required = False,
+	# 							        label='User Category',
+	# 							        )
 	class Meta:
 		model = User
 		fields = [
-			'username',
 			'first_name',
+			'middle_name',
 			'last_name',
 			'email',
-			'user_category',
+			'phone_number',
 			'password',
 			'confirm_password',
 			]
@@ -50,20 +53,26 @@ class RegisterForm(forms.ModelForm):
 		if password != confirm_password:
 			raise forms.ValidationError('Password must match')
 
+
 class UpdateUserForm(forms.ModelForm):
 	class Meta:
 		model = User
 		fields = [
-			'username',
 			'first_name',
+			'middle_name',
 			'last_name',
+			'gender',
 			'email',
+			'phone_number',
+			'dob',
+			'image',
 			]
+
 
 class UserDetailForm(forms.ModelForm):
 	class Meta:
-		model = UserDetail
-		exclude=('user',)
+		model = User
+		fields = ("__all__")
 
 
 

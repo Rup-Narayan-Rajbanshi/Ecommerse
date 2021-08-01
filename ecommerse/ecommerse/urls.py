@@ -21,13 +21,21 @@ from django.conf.urls.static import static
 
 from product.views import *
 
+import admin_reports
+
+
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('account/',include('account.urls')),
-    path('product/',include('product.urls')),
-    path('',Home.as_view(), name = 'home'),
+    path('admin/',admin_reports.site.urls),
 
-    path('dashboard/',Dashboard.as_view(), name = 'dashboard'),
+    path('account/',include('account.urls')),
+    path('company/',include('company.urls')),
+    path('product/',include('product.urls')),
+
+   
+    # path('',Home.as_view(), name = 'home'),
+
+    # path('dashboard/',Dashboard.as_view(), name = 'dashboard'),
 
 ]
 

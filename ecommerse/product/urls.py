@@ -6,46 +6,46 @@ from . import views
 app_name = 'product'
 
 urlpatterns = [ 
-#Category
-    # path('category/add/',AddCategory.as_view(),name='category-add'),
-    # path('category/<int:pk>/update/',CategoryUpdate.as_view(),name='category-update'),
-    # path('category/list/',CategoryList.as_view(),name='category-list'),
-#Brand
-    path('brand/add/',AddBrand.as_view(),name='brand-add'),
-    path('brand/<int:pk>/update/',BrandUpdate.as_view(),name='brand-update'),
-    path('brand/list/',BrandList.as_view(),name='brand-list'),
+# #Category
+#     # path('category/add/',AddCategory.as_view(),name='category-add'),
+#     # path('category/<int:pk>/update/',CategoryUpdate.as_view(),name='category-update'),
+#     # path('category/list/',CategoryList.as_view(),name='category-list'),
+# #Brand
+#     path('brand/add/',AddBrand.as_view(),name='brand-add'),
+#     path('brand/<int:pk>/update/',BrandUpdate.as_view(),name='brand-update'),
+#     path('brand/list/',BrandList.as_view(),name='brand-list'),
 
-#Model
-    path('model/add/',AddModel.as_view(),name='model-add'),
-    path('model/<int:pk>/update/',ModelUpdate.as_view(),name='model-update'),
-    path('model/list/',ModelList.as_view(),name='model-list'),
+# #Model
+#     path('model/add/',AddModel.as_view(),name='model-add'),
+#     path('model/<int:pk>/update/',ModelUpdate.as_view(),name='model-update'),
+#     path('model/list/',ModelList.as_view(),name='model-list'),
 
-#Color
-    # path('color/add/',AddColor.as_view(),name='color-add'),
-    # path('color/<int:pk>/update/',ColorUpdate.as_view(),name='color-update'),
-    # path('color/list/',ColorList.as_view(),name='color-list'),
+# #Color
+#     # path('color/add/',AddColor.as_view(),name='color-add'),
+#     # path('color/<int:pk>/update/',ColorUpdate.as_view(),name='color-update'),
+#     # path('color/list/',ColorList.as_view(),name='color-list'),
 
-#Product
-    path('add/',ProductAdd,name='product-add'),
-    path('<int:id>/update/',ProductUpdate,name='update'),
-    path('list/',ProductList.as_view(),name='list'),
-    path('category_list/<int:pk>/',ProductList.as_view(),name='category-list'),
-    path('<int:pk>/detail/',ProductDetail.as_view(),name='detail'),
+# #Product
+#     path('add/',ProductAdd,name='product-add'),
+#     path('<int:id>/update/',ProductUpdate,name='update'),
+#     path('list/',ProductList.as_view(),name='list'),
+#     path('category_list/<int:pk>/',ProductList.as_view(),name='category-list'),
+#     path('<int:pk>/detail/',ProductDetail.as_view(),name='detail'),
 
-    path('my_list/',MyProductList.as_view(), name = 'my-products'),
+#     path('my_list/',MyProductList.as_view(), name = 'my-products'),
 
-#Order
-    path('checkout/',ProductOrderAdd.as_view(),name='checkout'),
-    path('order/list/',MyOrderList.as_view(),name='order-list'),
-    path('deliver/<int:id>/',deliver,name='deliver'),
+# #Order
+#     path('checkout/',ProductOrderAdd.as_view(),name='checkout'),
+#     path('order/list/',MyOrderList.as_view(),name='order-list'),
+#     path('deliver/<int:id>/',deliver,name='deliver'),
 
-#image
-    path('image/<int:id>/update/',image_update,name='image-update'),
+# #image
+#     path('image/<int:id>/update/',image_update,name='image-update'),
 
-#contact
-    path('contact/',ContactView.as_view(),name='contact'),
+# #contact
+#     path('contact/',ContactView.as_view(),name='contact'),
 
-# dashboard
+# # dashboard
     
 
 ]
