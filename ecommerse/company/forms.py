@@ -20,7 +20,7 @@ class CompanyRegisterForm(forms.ModelForm):
 class CompanyUpdateForm(forms.ModelForm):
 	class Meta:
 		model = Company
-		exclude = ['user']
+		exclude = ['is_verified',]
 		# fields = [
 		# 	'name',
 		# 	'address',

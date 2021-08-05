@@ -19,7 +19,6 @@ class UserLoginForm(forms.Form):
 		password = self.cleaned_data.get('password')
 		# email = self.cleaned_data.get('email')
 		user = authenticate(phone_number=phone_number,password=password)
-		print("passed form")
 
 		if not user:
 			raise forms.ValidationError('The user doesnot exist')
@@ -31,10 +30,7 @@ class UserLoginForm(forms.Form):
 
 class RegisterForm(forms.ModelForm):
 	confirm_password=forms.CharField(label='Confirm Password')
-	# user_category=forms.ModelChoiceField(queryset = Group.objects.all(),
-	# 							        required = False,
-	# 							        label='User Category',
-	# 							        )
+
 	class Meta:
 		model = User
 		fields = [
@@ -52,6 +48,7 @@ class RegisterForm(forms.ModelForm):
 		confirm_password = self.cleaned_data.get('confirm_password')
 		if password != confirm_password:
 			raise forms.ValidationError('Password must match')
+
 
 
 class UpdateUserForm(forms.ModelForm):

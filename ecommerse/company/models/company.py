@@ -14,14 +14,10 @@ from helpers.constants import MAX_LENGTHS
 class Company(BaseModel):
     name = models.CharField(max_length=MAX_LENGTHS['NAME'])
     address = models.ForeignKey(Address,on_delete=models.PROTECT, null=True, blank=False)
-    opens_at = models.TimeField(null=True)
-    closes_at = models.TimeField(null=True)
     logo = models.ImageField(upload_to='company_logo/', null=True, blank=True)
     category = models.ForeignKey(Category, on_delete=models.PROTECT,\
         related_name="company")
     email = models.EmailField(max_length=50, unique=True, blank=True, null=True)
-    user = models.ForeignKey(User, on_delete=models.PROTECT,\
-        related_name="company", blank=True, null=True)
     images = GenericRelation(Image)
     is_active = models.BooleanField(default=True)
     phone_number = models.CharField(max_length=15, unique=True, null=True, \
@@ -36,6 +32,7 @@ class Company(BaseModel):
     invoice_counter = models.PositiveIntegerField(default=0, editable=False)
     description = models.TextField(blank=True, null=True)
     pan_number  = models.CharField(max_length=16, default='')
+    is_verified = models.BooleanField(default=False)
 
     class Meta:
         db_table = 'company'
@@ -45,11 +42,14 @@ class Company(BaseModel):
     def __str__(self):
         return self.name
 
+   
+
 
 class CompanyUser(BaseModel):
     user = models.ForeignKey(User, on_delete=models.PROTECT, related_name='company_user')
     company = models.ForeignKey(Company, on_delete=models.PROTECT, related_name='company_user')
     is_staff = models.BooleanField(default=True)
+    is_active = models.BooleanField(default=False)
     is_obsolete = models.BooleanField(default=False)
 
     class Meta:

@@ -12,6 +12,37 @@ OTP_STATUS_TYPES = {
 }
 
 
+GENDER = {
+    'ALL':'ALL',
+    'MALE':'MALE',
+    'FEMALE':'FEMALE',
+    'OTHER':'OTHER'
+}
+
+
+SIZE = {
+    'SMALL': 'SMALL',
+    'MEDIUM':'MEDIUM',
+    'LARGE' : 'LARGE',
+    'XTRA_LARGE':'XTRA_LARGE'
+}
+
+
+PRODUCT_STATUS= {
+    'ACTIVE': 'ACTIVE',
+    'INACTIVE': 'INACTIVE'
+}
+
+
+ORDER_STATUS = {
+    'NEW_ORDER': 'NEW_ORDER',
+    'CONFIRMED': 'CONFIRMED',
+    'SHIPPED'  : 'SHIPPED',
+    'CANCELLED': 'CANCELLED',
+    'DELIVERED': 'DELIVERED',
+}
+
+
 
 MAX_LENGTHS = {
     'PHONE_NUMBER_EXT': 6,

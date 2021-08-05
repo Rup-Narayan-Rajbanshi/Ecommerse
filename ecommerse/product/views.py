@@ -21,35 +21,35 @@ import code
 
 
 
-# # Create your views here.        
-# # class AddCategory(CreateView):
-# #     model = Category
-# #     fields = ('__all__')
-# #     template_name = 'category/add.html'
+# Create your views here.        
+# class AddCategory(CreateView):
+#     model = Category
+#     fields = ('__all__')
+#     template_name = 'category/add.html'
 
-# #     def get_success_url(self):
-# #         return reverse('product:category-list')
-
-
-
-# # class CategoryUpdate(UpdateView):
-# #     model = Category
-# #     fields = ('__all__')
-# #     template_name = 'category/add.html'
-
-# #     def get_success_url(self):
-# #         return reverse('product:category-list')
+#     def get_success_url(self):
+#         return reverse('product:category-list')
 
 
 
-# # class CategoryList(ListView):
-# #     model = Category
-# #     template_name = 'category/list.html'
-# #     context_object_name = 'categories'
+# class CategoryUpdate(UpdateView):
+#     model = Category
+#     fields = ('__all__')
+#     template_name = 'category/add.html'
 
-# #     def get_context_data(self, **kwargs):
-# #         context = super().get_context_data(**kwargs)
-# #         return context
+#     def get_success_url(self):
+#         return reverse('product:category-list')
+
+
+
+# class CategoryList(ListView):
+#     model = Category
+#     template_name = 'category/list.html'
+#     context_object_name = 'categories'
+
+#     def get_context_data(self, **kwargs):
+#         context = super().get_context_data(**kwargs)
+#         return context
 
 # #********************** End Block : Category *******************#
 
